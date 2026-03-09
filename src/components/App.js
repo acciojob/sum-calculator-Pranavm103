@@ -3,7 +3,7 @@ import SumCalculator from "./SumCalculator";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <SumCalculator />
     </div>
   );
