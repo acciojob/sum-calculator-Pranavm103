@@ -1,39 +1,50 @@
 import React, { useState, useEffect } from "react";
 
 function SumCalculator() {
+
   const [numbers, setNumbers] = useState([]);
-  const [input, setInput] = useState("");
   const [sum, setSum] = useState(0);
 
-  const handleKeyUp = (e) => {
-    if (e.key === "Enter") {
-      const value = e.target.value.trim();   // read directly from input
-      if (value === "") return;
+  const handleChange = (e) => {
 
-      const num = parseInt(value, 10);
-      if (!Number.isNaN(num)) {
-        setNumbers((prev) => [...prev, num]);
-      }
-      setInput("");                          // clear box after adding
+    const value = parseInt(e.target.value);
+
+    if (!isNaN(value)) {
+      setNumbers((prev) => [...prev, value]);
     }
+
+    e.target.value = "";
   };
 
   useEffect(() => {
-    const total = numbers.reduce((acc, curr) => acc + curr, 0);
-    setSum(total);
+
+    setTimeout(() => {
+
+      let total = 0;
+
+      for (let i = 0; i < numbers.length; i++) {
+        total += numbers[i];
+      }
+
+      setSum(total);
+
+    }, 0);
+
   }, [numbers]);
 
   return (
     <div>
+
       <h2>Sum Calculator</h2>
+
       <input
         type="number"
         placeholder="Enter number"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyUp={handleKeyUp}
+        onChange={handleChange}
       />
-      <h3>Total Sum: {sum}</h3>
+
+      <h3>Sum: {sum}</h3>
+
     </div>
   );
 }
