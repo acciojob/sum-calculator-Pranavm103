@@ -1,13 +1,12 @@
 import React from "react";
-import "./../styles/App.css";
 import SumCalculator from "./SumCalculator";
 
-const App = () => {
+function App() {
   return (
-    <div>
+    <div className="App">
       <SumCalculator />
     </div>
   );
-};
+}
 
 export default App;
